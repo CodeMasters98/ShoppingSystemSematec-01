@@ -1,0 +1,6 @@
+@ShoppingSystemSematec_HostAddress = http://localhost:5228
+
+GET {{ShoppingSystemSematec_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
