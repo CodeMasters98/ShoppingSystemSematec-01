@@ -1,8 +1,9 @@
-﻿using ShoppingSystemSematec.Models;
+﻿using ShoppingSystemSematec.Api.Contracts;
+using ShoppingSystemSematec.Models;
 
 namespace ShoppingSystemSematec.Business;
 
-public class ProductBusiness
+public class ProductBusiness : IProductBusiness
 {
 
     static public List<Product> Products = new List<Product>()

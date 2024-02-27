@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingSystemSematec.Api.Contracts;
+using ShoppingSystemSematec.Api.General;
 using ShoppingSystemSematec.Business;
 using ShoppingSystemSematec.Dtos;
 using ShoppingSystemSematec.Models;
@@ -8,15 +10,17 @@ namespace ShoppingSystemSematec.Controllers;
 
 public class ProductController : BaseController
 {
-    public ProductController() {}
+    private readonly IProductBusiness _productBusiness;
+    public ProductController(IProductBusiness productBusiness)
+    {
+        _productBusiness = productBusiness;
+    }
 
     [Route("{id}")]
     [HttpGet]
-
-    public IActionResult Get([FromRoute]int id)
+    public async Task<IActionResult> Get([FromRoute] int id)
     {
-        ProductBusiness productBusiness = new ProductBusiness();
-        var product = productBusiness.GetProductById(id);
+        var product = _productBusiness.GetProductById(id);
 
         if (product is null)
             return NotFound();
@@ -33,7 +37,7 @@ public class ProductController : BaseController
 
     [Route("")]
     [HttpDelete]
-    public bool Delete()
+    public async Task<bool> Delete()
     {
         return true;
     }
@@ -43,7 +47,7 @@ public class ProductController : BaseController
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult Add([FromBody] AddProduct productDto)
+    public async Task<IActionResult> Add([FromBody] AddProduct productDto)
     {
         if (string.IsNullOrEmpty(productDto.Name) || productDto.Price <= 0)
             return BadRequest();
@@ -56,8 +60,7 @@ public class ProductController : BaseController
             CreateAt = DateTime.Now,
         };
 
-        ProductBusiness productBusiness = new ProductBusiness();
-        productBusiness.AddProduct(product);
+        _productBusiness.AddProduct(product);
 
         return Created();
     }
