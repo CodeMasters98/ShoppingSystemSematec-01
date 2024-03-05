@@ -1,6 +1,9 @@
-using ShoppingSystemSematec.Api.Contracts;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using ShoppingSystemSematec.Api;
 using ShoppingSystemSematec.Api.Middlewares;
-using ShoppingSystemSematec.Business;
+using ShoppingSystemSematec.Api.Shared.Configs;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +12,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-//injector
-builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
+
+var configurationBuilder = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile($"appsettings.Development.json", optional: true, reloadOnChange: true)
+        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+var configuration = configurationBuilder.Build();
+
+//IOptions
+//IOptionsSnapshot
+//IOptionsMonitor
+
+builder.Services.Configure<MySettings>(configuration.GetSection("MySettings"));
+
+builder.Services.RegisterPresentationServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

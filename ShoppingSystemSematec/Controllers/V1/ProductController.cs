@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using ShoppingSystemSematec.Api.Contracts;
 using ShoppingSystemSematec.Api.General;
+using ShoppingSystemSematec.Api.Shared.Configs;
 using ShoppingSystemSematec.Business;
 using ShoppingSystemSematec.Dtos;
 using ShoppingSystemSematec.Models;
@@ -11,8 +14,12 @@ namespace ShoppingSystemSematec.Controllers;
 public class ProductController : BaseController
 {
     private readonly IProductBusiness _productBusiness;
-    public ProductController(IProductBusiness productBusiness)
+    private readonly IMapper _mapper;
+    private readonly MySettings _mySettings;
+    public ProductController(IProductBusiness productBusiness, IMapper mapper, IOptionsSnapshot<MySettings> mySettings)
     {
+        _mySettings = mySettings.Value;
+        _mapper = mapper;
         _productBusiness = productBusiness;
     }
 
@@ -20,17 +27,12 @@ public class ProductController : BaseController
     [HttpGet]
     public async Task<IActionResult> Get([FromRoute] int id)
     {
-        var product = _productBusiness.GetProductById(id);
-
+        Product product = _productBusiness.GetProductById(id);
+        
         if (product is null)
             return NotFound();
-
-        ProductDto productDto = new ProductDto()
-        {
-            Id = product.Id,
-            Name = product.Name,
-            Price = product.Price,
-        };
+        product.Name = $" {_mySettings.StringSetting}  {product.Name}";
+        var productDto = _mapper.Map<ProductDto>(product);
 
         return Ok(productDto);
     }
@@ -47,19 +49,9 @@ public class ProductController : BaseController
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Add([FromBody] AddProduct productDto)
+    public async Task<IActionResult> Add([FromBody] AddProductDto productDto)
     {
-        if (string.IsNullOrEmpty(productDto.Name) || productDto.Price <= 0)
-            return BadRequest();
-
-        var product = new Product()
-        {
-            Price = productDto.Price,
-            Name = productDto.Name,
-            Id = 1,
-            CreateAt = DateTime.Now,
-        };
-
+        var product = _mapper.Map<Product>(productDto);
         _productBusiness.AddProduct(product);
 
         return Created();

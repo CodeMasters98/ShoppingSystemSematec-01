@@ -2,21 +2,22 @@
 
 namespace ShoppingSystemSematec.Api.Middlewares;
 
+
 public class LogUrlMiddleware
 {
-    private readonly ILogger _logger;
     private readonly RequestDelegate _next;
+    private readonly ILogger<LogUrlMiddleware> _logger;
 
-    public LogUrlMiddleware(ILogger logger, RequestDelegate next)
+    public LogUrlMiddleware(RequestDelegate next, ILogger<LogUrlMiddleware> logger)
     {
-        _logger = logger;
         _next = next;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext context)
     {
-        _logger.LogInformation("Called!!!");
-        await _next(context);
+        _logger.LogInformation($"Request Url:{Microsoft.AspNetCore.Http.Extensions.UriHelper.GetDisplayUrl(context.Request)}");
+        await this._next(context);
     }
 }
 
