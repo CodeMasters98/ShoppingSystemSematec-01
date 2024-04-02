@@ -1,9 +1,8 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 using ShoppingSystemSematec.Api;
+using ShoppingSystemSematec.Api.Context;
 using ShoppingSystemSematec.Api.Middlewares;
 using ShoppingSystemSematec.Api.Shared.Configs;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
+string connectionString = "data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;";
+//string connectionString = "data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;";
+
+builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
+
+//builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var configurationBuilder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())

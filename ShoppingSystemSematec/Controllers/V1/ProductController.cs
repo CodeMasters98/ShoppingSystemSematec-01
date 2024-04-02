@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using ShoppingSystemSematec.Api.Context;
 using ShoppingSystemSematec.Api.Contracts;
-using ShoppingSystemSematec.Api.General;
 using ShoppingSystemSematec.Api.Shared.Configs;
-using ShoppingSystemSematec.Business;
 using ShoppingSystemSematec.Dtos;
 using ShoppingSystemSematec.Models;
 using System.Net.Mime;
@@ -27,10 +26,12 @@ public class ProductController : BaseController
     [HttpGet]
     public async Task<IActionResult> Get([FromRoute] int id)
     {
+
         Product product = _productBusiness.GetProductById(id);
         
         if (product is null)
             return NotFound();
+
         product.Name = $" {_mySettings.StringSetting}  {product.Name}";
         var productDto = _mapper.Map<ProductDto>(product);
 
