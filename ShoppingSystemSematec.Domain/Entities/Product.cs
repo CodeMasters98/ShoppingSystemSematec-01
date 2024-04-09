@@ -1,6 +1,6 @@
-﻿using ShoppingSystemSematec.Contracts;
+﻿using ShoppingSystemSematec.Domain.Contracts;
 
-namespace ShoppingSystemSematec.Models;
+namespace ShoppingSystemSematec.Domain.Entities;
 
 public class Product:BaseEntity<int>
 {

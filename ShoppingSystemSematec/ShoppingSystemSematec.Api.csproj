@@ -28,4 +28,9 @@
     <Folder Include="Controllers\V2\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingSystemSematec.Application\ShoppingSystemSematec.Application.csproj" />
+    <ProjectReference Include="..\ShoppingSystemSematec.Domain\ShoppingSystemSematec.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

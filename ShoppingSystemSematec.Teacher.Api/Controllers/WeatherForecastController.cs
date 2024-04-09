@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoppingSystemSematec.Controllers.V1
+namespace ShoppingSystemSematec.Teacher.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

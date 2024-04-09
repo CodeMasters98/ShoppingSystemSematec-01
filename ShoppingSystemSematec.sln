@@ -5,6 +5,20 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystemSematec.Api", "ShoppingSystemSematec\ShoppingSystemSematec.Api.csproj", "{547592D4-6C0E-4FDF-857F-A24AC75F59D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Teacher.Api", "ShoppingSystemSematec.Teacher.Api\ShoppingSystemSematec.Teacher.Api.csproj", "{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EB86BFFC-D4F0-40CA-AE5C-9754F314BD3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Domain", "ShoppingSystemSematec.Domain\ShoppingSystemSematec.Domain.csproj", "{99353F33-8871-400B-A509-71531B743ECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Application", "ShoppingSystemSematec.Application\ShoppingSystemSematec.Application.csproj", "{3EDD492A-60C5-4C31-97BF-C107B626851E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8BC96FCB-F3DD-4982-B3F8-4C92AF948118}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{50E1B026-FB4B-48A7-920C-E9A20C7FA8C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Infrastructure", "ShoppingSystemSematec.Infrastructure\ShoppingSystemSematec.Infrastructure.csproj", "{4A4777A8-2B63-4611-9365-6E1666461B6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +29,32 @@ Global
 		{547592D4-6C0E-4FDF-857F-A24AC75F59D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{547592D4-6C0E-4FDF-857F-A24AC75F59D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{547592D4-6C0E-4FDF-857F-A24AC75F59D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99353F33-8871-400B-A509-71531B743ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99353F33-8871-400B-A509-71531B743ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99353F33-8871-400B-A509-71531B743ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99353F33-8871-400B-A509-71531B743ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EDD492A-60C5-4C31-97BF-C107B626851E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDD492A-60C5-4C31-97BF-C107B626851E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDD492A-60C5-4C31-97BF-C107B626851E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDD492A-60C5-4C31-97BF-C107B626851E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4777A8-2B63-4611-9365-6E1666461B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4777A8-2B63-4611-9365-6E1666461B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4777A8-2B63-4611-9365-6E1666461B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4777A8-2B63-4611-9365-6E1666461B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{547592D4-6C0E-4FDF-857F-A24AC75F59D1} = {8BC96FCB-F3DD-4982-B3F8-4C92AF948118}
+		{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B} = {8BC96FCB-F3DD-4982-B3F8-4C92AF948118}
+		{99353F33-8871-400B-A509-71531B743ECE} = {EB86BFFC-D4F0-40CA-AE5C-9754F314BD3D}
+		{3EDD492A-60C5-4C31-97BF-C107B626851E} = {EB86BFFC-D4F0-40CA-AE5C-9754F314BD3D}
+		{4A4777A8-2B63-4611-9365-6E1666461B6D} = {50E1B026-FB4B-48A7-920C-E9A20C7FA8C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDFA58B6-95C6-40AE-848E-2128079EBC35}

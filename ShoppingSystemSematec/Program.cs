@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ShoppingSystemSematec.Api;
-using ShoppingSystemSematec.Api.Context;
 using ShoppingSystemSematec.Api.Middlewares;
 using ShoppingSystemSematec.Api.Shared.Configs;
+using ShoppingSystemSematec.Application;
+using ShoppingSystemSematec.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,6 @@ builder.Services.AddControllers();
 string connectionString = "data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;";
 //string connectionString = "data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;";
 
-builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
 
 //builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -31,7 +31,10 @@ var configuration = configurationBuilder.Build();
 
 builder.Services.Configure<MySettings>(configuration.GetSection("MySettings"));
 
-builder.Services.RegisterPresentationServices();
+builder.Services
+        .RegisterApplicationServices()
+        .RegisterInfrastructureServices(connectionString)
+        .RegisterPresentationServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

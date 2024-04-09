@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using ShoppingSystemSematec.Domain.Entities;
 using ShoppingSystemSematec.Dtos;
-using ShoppingSystemSematec.Models;
 
 namespace ShoppingSystemSematec.Api.Profiles;
 

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using ShoppingSystemSematec.Api.Context;
 using ShoppingSystemSematec.Api.Contracts;
 using ShoppingSystemSematec.Api.Shared.Configs;
+using ShoppingSystemSematec.Domain.Entities;
 using ShoppingSystemSematec.Dtos;
-using ShoppingSystemSematec.Models;
 using System.Net.Mime;
 
 namespace ShoppingSystemSematec.Controllers;
@@ -22,13 +21,21 @@ public class ProductController : BaseController
         _productBusiness = productBusiness;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+
+        List<Product> products = await _productBusiness.GetProducts();
+        return Ok(products);
+    }
+
     [Route("{id}")]
     [HttpGet]
     public async Task<IActionResult> Get([FromRoute] int id)
     {
 
-        Product product = _productBusiness.GetProductById(id);
-        
+        Product product = await _productBusiness.GetProductById(id);
+
         if (product is null)
             return NotFound();
 
