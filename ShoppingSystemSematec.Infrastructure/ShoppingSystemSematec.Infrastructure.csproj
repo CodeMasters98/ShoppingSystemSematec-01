@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingSystemSematec.Application\ShoppingSystemSematec.Application.csproj" />
     <ProjectReference Include="..\ShoppingSystemSematec.Domain\ShoppingSystemSematec.Domain.csproj" />
   </ItemGroup>
 

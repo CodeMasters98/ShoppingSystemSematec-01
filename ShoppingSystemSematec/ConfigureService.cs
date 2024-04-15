@@ -1,7 +1,5 @@
 ﻿using FluentValidation.AspNetCore;
-using ShoppingSystemSematec.Api.Contracts;
 using ShoppingSystemSematec.Api.Profiles;
-using ShoppingSystemSematec.Business;
 
 namespace ShoppingSystemSematec.Api;
 

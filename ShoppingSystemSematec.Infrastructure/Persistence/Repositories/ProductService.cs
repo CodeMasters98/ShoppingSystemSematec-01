@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoppingSystemSematec.Domain.Contracts;
+using ShoppingSystemSematec.Application.Interfaces;
 using ShoppingSystemSematec.Domain.Entities;
 using ShoppingSystemSematec.Infrastructure.Context;
-
 
 namespace ShoppingSystemSematec.Infrastructure.Persistence.Repositories;
 

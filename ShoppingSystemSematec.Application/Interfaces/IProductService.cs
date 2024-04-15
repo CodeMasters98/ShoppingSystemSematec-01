@@ -1,6 +1,6 @@
 ﻿using ShoppingSystemSematec.Domain.Entities;
 
-namespace ShoppingSystemSematec.Domain.Contracts;
+namespace ShoppingSystemSematec.Application.Interfaces;
 
 public interface IProductService
 {
