@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoppingSystemSematec.Domain.Contracts;
+using ShoppingSystemSematec.Application.Contracts;
 using ShoppingSystemSematec.Domain.Entities;
 using ShoppingSystemSematec.Infrastructure.Context;
 
-
 namespace ShoppingSystemSematec.Infrastructure.Persistence.Repositories;
-
 
 public class ProductService : IProductService
 {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ShoppingSystemSematec.Dtos;
+namespace ShoppingSystemSematec.Application.Dtos;
 
 public class AddProductDto
 {

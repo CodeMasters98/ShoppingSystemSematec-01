@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShoppingSystemSematec.Application\ShoppingSystemSematec.Application.csproj" />
-    <ProjectReference Include="..\ShoppingSystemSematec.Domain\ShoppingSystemSematec.Domain.csproj" />
+    <ProjectReference Include="..\ShoppingSystemSematec.Infrastructure\ShoppingSystemSematec.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

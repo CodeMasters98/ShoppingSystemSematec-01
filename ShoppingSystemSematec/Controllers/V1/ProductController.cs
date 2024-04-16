@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using ShoppingSystemSematec.Api.Contracts;
 using ShoppingSystemSematec.Api.Shared.Configs;
+using ShoppingSystemSematec.Application.Contracts;
+using ShoppingSystemSematec.Application.Dtos;
 using ShoppingSystemSematec.Domain.Entities;
-using ShoppingSystemSematec.Dtos;
 using System.Net.Mime;
 
 namespace ShoppingSystemSematec.Controllers;
 
 public class ProductController : BaseController
 {
-    private readonly IProductBusiness _productBusiness;
+    private readonly IProductService _productBusiness;
     private readonly IMapper _mapper;
     private readonly MySettings _mySettings;
-    public ProductController(IProductBusiness productBusiness, IMapper mapper, IOptionsSnapshot<MySettings> mySettings)
+    public ProductController(IProductService productBusiness, IMapper mapper, IOptionsSnapshot<MySettings> mySettings)
     {
         _mySettings = mySettings.Value;
         _mapper = mapper;
@@ -24,7 +24,6 @@ public class ProductController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-
         List<Product> products = await _productBusiness.GetProducts();
         return Ok(products);
     }

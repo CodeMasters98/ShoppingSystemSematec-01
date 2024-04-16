@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using ShoppingSystemSematec.Domain.Entities;
-using ShoppingSystemSematec.Dtos;
+using ShoppingSystemSematec.Application.Dtos;
 
-namespace ShoppingSystemSematec.Api.Profiles;
+namespace ShoppingSystemSematec.Application.Profiles;
 
 public class ProductProfile : Profile
 {

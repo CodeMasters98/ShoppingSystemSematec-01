@@ -1,6 +1,6 @@
 ﻿using ShoppingSystemSematec.Domain.Entities;
 
-namespace ShoppingSystemSematec.Domain.Contracts;
+namespace ShoppingSystemSematec.Application.Contracts;
 
 public interface IProductService
 {
@@ -8,3 +8,4 @@ public interface IProductService
     Task<Product> GetProductById(int id);
     bool AddProduct(Product product);
 }
+

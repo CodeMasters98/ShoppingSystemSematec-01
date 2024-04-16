@@ -1,4 +1,6 @@
-﻿namespace ShoppingSystemSematec.Dtos;
+﻿#nullable disable
+
+namespace ShoppingSystemSematec.Application.Dtos;
 
 public class ProductDto
 {
