@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShoppingSystemSematec.Api;
 using ShoppingSystemSematec.Api.Middlewares;
-using ShoppingSystemSematec.Api.Shared.Configs;
 using ShoppingSystemSematec.Application;
 using ShoppingSystemSematec.Infrastructure;
 
@@ -12,35 +11,32 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-//string connectionString = "data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;";
-//string connectionString = "data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;";
-
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-//builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 var configurationBuilder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile($"appsettings.Development.json", optional: true, reloadOnChange: true)
+        //.AddJsonFile("secrets.json", optional: true, reloadOnChange: true)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
 var configuration = configurationBuilder.Build();
+
+//string connectionString = configuration.GetConnectionString("DefaultConnection");
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //IOptions
 //IOptionsSnapshot
 //IOptionsMonitor
 
-builder.Services.Configure<MySettings>(configuration.GetSection("MySettings"));
-
 builder.Services
         .RegisterApplicationServices()
         .RegisterInfrastructureServices(connectionString)
-        .RegisterPresentationServices();
+        .RegisterPresentationServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseGlobalException();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
