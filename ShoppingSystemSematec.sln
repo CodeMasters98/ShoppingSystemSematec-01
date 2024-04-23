@@ -19,9 +19,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystemSematec.Infrastructure", "ShoppingSystemSematec.Infrastructure\ShoppingSystemSematec.Infrastructure.csproj", "{4A4777A8-2B63-4611-9365-6E1666461B6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Infrastructure.Identity", "ShoppingSystemSematec.Infrastructure.Identity\ShoppingSystemSematec.Infrastructure.Identity.csproj", "{194C6E08-0494-4562-B900-46CF01CD2F58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystemSematec.Infrastructure.Identity", "ShoppingSystemSematec.Infrastructure.Identity\ShoppingSystemSematec.Infrastructure.Identity.csproj", "{194C6E08-0494-4562-B900-46CF01CD2F58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Infrastructure.Shared", "ShoppingSystemSematec.Infrastructure.Shared\ShoppingSystemSematec.Infrastructure.Shared.csproj", "{E581695F-DC26-4004-94E5-6DEE061F1E94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystemSematec.Infrastructure.Shared", "ShoppingSystemSematec.Infrastructure.Shared\ShoppingSystemSematec.Infrastructure.Shared.csproj", "{E581695F-DC26-4004-94E5-6DEE061F1E94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C80D8B40-F514-45EC-9C2F-E554A3F939C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F8B163A2-3E55-466B-A9FE-A81987CADB31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService", "ProductService", "{115EC0E1-FF29-4147-95A9-A59C89DCE62D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{F28257C0-1252-4443-98CE-CBCB26B90F17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Gateway", "ShoppingSystemSematec.Gateway\ShoppingSystemSematec.Gateway.csproj", "{65D5DE85-DE76-4B3D-920B-135E155D2EF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +67,10 @@ Global
 		{E581695F-DC26-4004-94E5-6DEE061F1E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E581695F-DC26-4004-94E5-6DEE061F1E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E581695F-DC26-4004-94E5-6DEE061F1E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,11 +78,18 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{547592D4-6C0E-4FDF-857F-A24AC75F59D1} = {8BC96FCB-F3DD-4982-B3F8-4C92AF948118}
 		{A7FF914E-E68E-4084-8E2C-A9C8709D2F6B} = {8BC96FCB-F3DD-4982-B3F8-4C92AF948118}
+		{EB86BFFC-D4F0-40CA-AE5C-9754F314BD3D} = {115EC0E1-FF29-4147-95A9-A59C89DCE62D}
 		{99353F33-8871-400B-A509-71531B743ECE} = {EB86BFFC-D4F0-40CA-AE5C-9754F314BD3D}
 		{3EDD492A-60C5-4C31-97BF-C107B626851E} = {EB86BFFC-D4F0-40CA-AE5C-9754F314BD3D}
+		{8BC96FCB-F3DD-4982-B3F8-4C92AF948118} = {115EC0E1-FF29-4147-95A9-A59C89DCE62D}
+		{50E1B026-FB4B-48A7-920C-E9A20C7FA8C4} = {115EC0E1-FF29-4147-95A9-A59C89DCE62D}
 		{4A4777A8-2B63-4611-9365-6E1666461B6D} = {50E1B026-FB4B-48A7-920C-E9A20C7FA8C4}
 		{194C6E08-0494-4562-B900-46CF01CD2F58} = {50E1B026-FB4B-48A7-920C-E9A20C7FA8C4}
 		{E581695F-DC26-4004-94E5-6DEE061F1E94} = {50E1B026-FB4B-48A7-920C-E9A20C7FA8C4}
+		{F8B163A2-3E55-466B-A9FE-A81987CADB31} = {C80D8B40-F514-45EC-9C2F-E554A3F939C7}
+		{115EC0E1-FF29-4147-95A9-A59C89DCE62D} = {F8B163A2-3E55-466B-A9FE-A81987CADB31}
+		{F28257C0-1252-4443-98CE-CBCB26B90F17} = {C80D8B40-F514-45EC-9C2F-E554A3F939C7}
+		{65D5DE85-DE76-4B3D-920B-135E155D2EF5} = {F28257C0-1252-4443-98CE-CBCB26B90F17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDFA58B6-95C6-40AE-848E-2128079EBC35}

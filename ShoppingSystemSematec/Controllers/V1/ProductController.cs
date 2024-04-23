@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ShoppingSystemSematec.Api.Shared.Configs;
 using ShoppingSystemSematec.Application.Contracts;
@@ -11,20 +12,20 @@ namespace ShoppingSystemSematec.Controllers;
 
 public class ProductController : BaseController
 {
-    private readonly IProductService _productBusiness;
+    private readonly IProductService _productService;
     private readonly IMapper _mapper;
     private readonly MySettings _mySettings;
-    public ProductController(IProductService productBusiness, IMapper mapper, IOptionsSnapshot<MySettings> mySettings)
+    public ProductController(IProductService productService, IMapper mapper, IOptionsSnapshot<MySettings> mySettings)
     {
         _mySettings = mySettings.Value;
         _mapper = mapper;
-        _productBusiness = productBusiness;
+        _productService = productService;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        List<Product> products = await _productBusiness.GetProducts();
+        List<Product> products = await _productService.GetProducts();
         return Ok(products);
     }
 
@@ -33,7 +34,7 @@ public class ProductController : BaseController
     public async Task<IActionResult> Get([FromRoute] int id)
     {
 
-        Product product = await _productBusiness.GetProductById(id);
+        Product product = await _productService.GetProductById(id);
 
         if (product is null)
             return NotFound();
@@ -59,7 +60,7 @@ public class ProductController : BaseController
     public async Task<IActionResult> Add([FromBody] AddProductDto productDto)
     {
         var product = _mapper.Map<Product>(productDto);
-        _productBusiness.AddProduct(product);
+        _productService.AddProduct(product);
 
         return Created();
     }
@@ -71,5 +72,27 @@ public class ProductController : BaseController
         return true;
     }
 
+    [Route("")]
+    [HttpPut]
+    public bool Activate([FromRoute] int productId)
+    {
+        var isActivate = _productService.Activate(productId);
+        return true;
+    }
+
+    [HttpPost("upload")]
+    public async Task<IActionResult> Upload(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file uploaded.");
+
+        using (var memoryStream = new MemoryStream())
+        {
+            await file.CopyToAsync(memoryStream);
+            //imageEntity.Data = memoryStream.ToArray();
+        }
+
+        return Ok();
+    }
 
 }

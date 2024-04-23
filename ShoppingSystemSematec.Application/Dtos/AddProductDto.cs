@@ -8,7 +8,6 @@ public class AddProductDto
     public decimal Price { get; set; }
 }
 
-
 public class AddProductDtoValidator : AbstractValidator<AddProductDto>
 {
     public AddProductDtoValidator()

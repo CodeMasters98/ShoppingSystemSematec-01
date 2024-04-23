@@ -11,5 +11,7 @@ public class ProductProfile : Profile
         //Source,Dest
         CreateMap<AddProductDto, Product>();
         CreateMap<Product, ProductDto>();
+
+        CreateMap<AddProductAttributeDto, ProductAttribute>();
     }
 }

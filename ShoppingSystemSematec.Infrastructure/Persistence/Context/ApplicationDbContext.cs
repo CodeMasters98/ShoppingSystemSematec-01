@@ -24,7 +24,6 @@ public class ApplicationDbContext : DbContext
     public override int SaveChanges()
     {
         Console.WriteLine("Hello from Parham before save changes");
-
         return base.SaveChanges();
     }
 }

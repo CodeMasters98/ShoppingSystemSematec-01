@@ -33,4 +33,17 @@ public class ProductService : IProductService
         Console.WriteLine($"product after save change : {_context.Entry(product).State}");
         return true;
     }
+
+    public bool Activate(int productId)
+    {
+        var product =_context.Products.Where(x => x.Id == productId).FirstOrDefault();
+        if (product is null)
+            return false;
+
+        product.Activate();
+
+        _context.SaveChanges();
+
+        return true;
+    }
 }

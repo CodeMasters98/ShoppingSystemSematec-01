@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ShoppingSystemSematec.Controllers;
 
-[Route("api/V1/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/[controller]/[action]")]
 [ApiController]
+[ApiVersion("1.0")]
 public class BaseController : ControllerBase
 {
     //Shared Code
