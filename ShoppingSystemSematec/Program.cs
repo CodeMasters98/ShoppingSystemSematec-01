@@ -4,6 +4,7 @@ using ShoppingSystemSematec.Api;
 using ShoppingSystemSematec.Api.Middlewares;
 using ShoppingSystemSematec.Application;
 using ShoppingSystemSematec.Infrastructure;
+using ShoppingSystemSematec.Infrastructure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ var configuration = configurationBuilder.Build();
 
 //string connectionString = configuration.GetConnectionString("DefaultConnection");
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string userDatabaseConnectionString = builder.Configuration.GetConnectionString("UserDatabase");
 
 //IOptions
 //IOptionsSnapshot
@@ -29,6 +31,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 
 builder.Services
         .RegisterApplicationServices()
+        .RegisterIdentityInfrastructureServices(builder.Configuration,userDatabaseConnectionString)
         .RegisterInfrastructureServices(connectionString)
         .RegisterPresentationServices(builder.Configuration);
 

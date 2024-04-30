@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingSystemSematec.Application.Contracts;
 using ShoppingSystemSematec.Application.Dtos;
 using ShoppingSystemSematec.Controllers;
-using ShoppingSystemSematec.Domain.Entities;
 using System.Net.Mime;
 
 namespace ShoppingSystemSematec.Api.Controllers.V1;
 
 public class AuthenticationController : BaseController
 {
+    private readonly IAuthenticationService _authenticationService;
+    public AuthenticationController(IAuthenticationService authenticationService)
+    {
+        _authenticationService = authenticationService;
+    }
+
     [Route("Login")]
     [HttpPost]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -15,7 +21,8 @@ public class AuthenticationController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Login([FromBody] LoginDto dto, CancellationToken ct)
     {
-        return Created();
+        var result = await _authenticationService.Login(dto);
+        return Ok(result);
     }
 
     [Route("Register")]
@@ -25,6 +32,7 @@ public class AuthenticationController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register([FromBody] RegisterDto dto, CancellationToken ct)
     {
-        return Created();
+        var result = await _authenticationService.Register(dto);
+        return Ok(result);
     }
 }
