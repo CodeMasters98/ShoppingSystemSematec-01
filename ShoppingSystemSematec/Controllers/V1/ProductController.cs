@@ -15,6 +15,7 @@ public class ProductController : BaseController
     private readonly IProductService _productService;
     private readonly IMapper _mapper;
     private readonly MySettings _mySettings;
+
     public ProductController(IProductService productService, IMapper mapper, IOptionsSnapshot<MySettings> mySettings)
     {
         _mySettings = mySettings.Value;

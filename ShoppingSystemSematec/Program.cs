@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using ShoppingSystemSematec.Api;
 using ShoppingSystemSematec.Api.Middlewares;
@@ -33,7 +34,7 @@ builder.Services
         .RegisterApplicationServices()
         .RegisterIdentityInfrastructureServices(builder.Configuration,userDatabaseConnectionString)
         .RegisterInfrastructureServices(connectionString)
-        .RegisterPresentationServices(builder.Configuration);
+        .RegisterPresentationServices(builder.Configuration, connectionString);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -51,7 +52,10 @@ var apiVersioningBuilder = builder.Services.AddApiVersioning(o =>
 
 var app = builder.Build();
 
+
 app.UseGlobalException();
+
+app.MapHealthChecks("/healthz");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -65,9 +69,17 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 //Write custome Middleware
-    
+
+
 app.UseLogUrl();
 
 app.MapControllers();
+
+//app.UseEndpoints(e =>
+//{
+//    e.MapControllers();
+//    e.MapHealthChecks("/healthz");
+//});
+
 
 app.Run();
