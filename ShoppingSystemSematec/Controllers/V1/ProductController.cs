@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using ShoppingSystemSematec.Api.Shared.Configs;
 using ShoppingSystemSematec.Application.Contracts;
 using ShoppingSystemSematec.Application.Dtos;
+using ShoppingSystemSematec.Application.Wrappers;
 using ShoppingSystemSematec.Domain.Entities;
 using System.Net.Mime;
 
@@ -26,7 +27,7 @@ public class ProductController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        List<Product> products = await _productService.GetProducts();
+        var products = await _productService.GetAllAsync();
         return Ok(products);
     }
 
@@ -35,14 +36,10 @@ public class ProductController : BaseController
     public async Task<IActionResult> Get([FromRoute] int id)
     {
 
-        Product product = await _productService.GetProductById(id);
-
+        var product = await _productService.FindByCondition(x => x.Id == id);
         if (product is null)
             return NotFound();
-
-        product.Name = $" {_mySettings.StringSetting}  {product.Name}";
         var productDto = _mapper.Map<ProductDto>(product);
-
         return Ok(productDto);
     }
 
@@ -61,7 +58,7 @@ public class ProductController : BaseController
     public async Task<IActionResult> Add([FromBody] AddProductDto productDto)
     {
         var product = _mapper.Map<Product>(productDto);
-        _productService.AddProduct(product);
+        await _productService.AddAsync(product);
 
         return Created();
     }
@@ -77,7 +74,7 @@ public class ProductController : BaseController
     [HttpPut]
     public bool Activate([FromRoute] int productId)
     {
-        var isActivate = _productService.Activate(productId);
+        //var isActivate = _productService.Activate(productId);
         return true;
     }
 

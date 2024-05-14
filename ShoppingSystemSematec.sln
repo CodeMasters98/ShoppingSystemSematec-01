@@ -31,7 +31,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService", "ProductSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{F28257C0-1252-4443-98CE-CBCB26B90F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Gateway", "ShoppingSystemSematec.Gateway\ShoppingSystemSematec.Gateway.csproj", "{65D5DE85-DE76-4B3D-920B-135E155D2EF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystemSematec.Gateway", "ShoppingSystemSematec.Gateway\ShoppingSystemSematec.Gateway.csproj", "{65D5DE85-DE76-4B3D-920B-135E155D2EF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GrpcServices", "GrpcServices", "{C2403D80-2E0A-48B8-BE84-0CF993C6DA4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystem.gRPCServer", "ShoppingSystem.gRPCServer\ShoppingSystem.gRPCServer.csproj", "{BE988522-2167-4B46-8D9E-8585D2CF7239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystem.gRPCClient", "ShoppingSystem.gRPCClient\ShoppingSystem.gRPCClient.csproj", "{E8FD9E57-DD4E-49DB-947C-18950F4F297E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +77,14 @@ Global
 		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65D5DE85-DE76-4B3D-920B-135E155D2EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE988522-2167-4B46-8D9E-8585D2CF7239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE988522-2167-4B46-8D9E-8585D2CF7239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE988522-2167-4B46-8D9E-8585D2CF7239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE988522-2167-4B46-8D9E-8585D2CF7239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +104,9 @@ Global
 		{115EC0E1-FF29-4147-95A9-A59C89DCE62D} = {F8B163A2-3E55-466B-A9FE-A81987CADB31}
 		{F28257C0-1252-4443-98CE-CBCB26B90F17} = {C80D8B40-F514-45EC-9C2F-E554A3F939C7}
 		{65D5DE85-DE76-4B3D-920B-135E155D2EF5} = {F28257C0-1252-4443-98CE-CBCB26B90F17}
+		{C2403D80-2E0A-48B8-BE84-0CF993C6DA4C} = {C80D8B40-F514-45EC-9C2F-E554A3F939C7}
+		{BE988522-2167-4B46-8D9E-8585D2CF7239} = {C2403D80-2E0A-48B8-BE84-0CF993C6DA4C}
+		{E8FD9E57-DD4E-49DB-947C-18950F4F297E} = {C2403D80-2E0A-48B8-BE84-0CF993C6DA4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDFA58B6-95C6-40AE-848E-2128079EBC35}

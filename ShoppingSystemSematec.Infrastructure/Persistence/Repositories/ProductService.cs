@@ -1,49 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ShoppingSystemSematec.Application.Contracts;
-using ShoppingSystemSematec.Domain.Entities;
+﻿using ShoppingSystemSematec.Application.Contracts;
+using ShoppingSystemSematec.Application.Exceptions;
+using ShoppingSystemSematec.Application.Wrappers;
 using ShoppingSystemSematec.Infrastructure.Context;
 
 namespace ShoppingSystemSematec.Infrastructure.Persistence.Repositories;
 
-public class ProductService : IProductService
+public class ProductService : GenericRepository<Domain.Entities.Product>, IProductService
 {
     private readonly ApplicationDbContext _context;
-    public ProductService(ApplicationDbContext context) => _context = context;
-
-    public async Task<List<Product>> GetProducts()
+    public ProductService(ApplicationDbContext context) : base(context)
     {
-        var products = await _context.Products.AsNoTracking().ToListAsync();
-        return products;
+
     }
 
-    public async Task<Product> GetProductById(int id)
-    {
-        var product = await _context.Products.Where(x => x.Id == id).FirstOrDefaultAsync();
-        return product;
-    }
-
-    public bool AddProduct(Product product)
-    {
-        Console.WriteLine($"product Before add : {_context.Entry(product).State}");
-        _context.Products.Add(product);
-        Console.WriteLine($"product after add : {_context.Entry(product).State}");
-        _context.SaveChanges();
-        Console.WriteLine($"product after save change : {_context.Entry(product).State}");
-        product.Name = "Testsdkjfnsdkjf";
-        Console.WriteLine($"product after save change : {_context.Entry(product).State}");
-        return true;
-    }
-
-    public bool Activate(int productId)
+    public Response<bool> Activate(int productId)
     {
         var product =_context.Products.Where(x => x.Id == productId).FirstOrDefault();
         if (product is null)
-            return false;
+            throw new ApiException($"Product Not Found.");
 
         product.Activate();
 
         _context.SaveChanges();
 
-        return true;
+        return new Response<bool>(true);
     }
 }

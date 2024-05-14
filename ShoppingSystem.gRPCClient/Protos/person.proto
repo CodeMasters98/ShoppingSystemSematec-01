@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "ShoppingSystem.gRPCServer";
+
+message GetPersonRequestDto{
+	int64 id= 1;
+}
+
+message PersonResponseDto{
+	string firstName = 1;
+	string lastName = 2;
+	int32 age = 3;
+}
+
+service PersonRepository{
+	rpc GetPerson(GetPersonRequestDto) returns (PersonResponseDto);
+}
