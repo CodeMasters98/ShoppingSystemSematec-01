@@ -12,6 +12,12 @@ public static class ConfigureService
     {
         services.AddAutoMapper(typeof(ProductProfile));
         services.AddFluentValidationAutoValidation();
+
+        var assembly = typeof(ConfigureService).Assembly;
+
+        services.AddMediatR(configuration =>
+            configuration.RegisterServicesFromAssembly(assembly));
+
         return services;
     }
 }

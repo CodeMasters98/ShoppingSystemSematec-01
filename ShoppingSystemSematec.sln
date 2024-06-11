@@ -35,9 +35,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystemSematec.Gatew
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GrpcServices", "GrpcServices", "{C2403D80-2E0A-48B8-BE84-0CF993C6DA4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystem.gRPCServer", "ShoppingSystem.gRPCServer\ShoppingSystem.gRPCServer.csproj", "{BE988522-2167-4B46-8D9E-8585D2CF7239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystem.gRPCServer", "ShoppingSystem.gRPCServer\ShoppingSystem.gRPCServer.csproj", "{BE988522-2167-4B46-8D9E-8585D2CF7239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystem.gRPCClient", "ShoppingSystem.gRPCClient\ShoppingSystem.gRPCClient.csproj", "{E8FD9E57-DD4E-49DB-947C-18950F4F297E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingSystem.gRPCClient", "ShoppingSystem.gRPCClient\ShoppingSystem.gRPCClient.csproj", "{E8FD9E57-DD4E-49DB-947C-18950F4F297E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{5EA3B01F-CD30-4B54-930A-7DCE04D30F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingSystemSematec.Shared", "ShoppingSystemSematec.Shared\ShoppingSystemSematec.Shared.csproj", "{A6DA803C-85EF-478D-AB3A-AE8EE5B5C831}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +89,10 @@ Global
 		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8FD9E57-DD4E-49DB-947C-18950F4F297E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6DA803C-85EF-478D-AB3A-AE8EE5B5C831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DA803C-85EF-478D-AB3A-AE8EE5B5C831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DA803C-85EF-478D-AB3A-AE8EE5B5C831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DA803C-85EF-478D-AB3A-AE8EE5B5C831}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +115,8 @@ Global
 		{C2403D80-2E0A-48B8-BE84-0CF993C6DA4C} = {C80D8B40-F514-45EC-9C2F-E554A3F939C7}
 		{BE988522-2167-4B46-8D9E-8585D2CF7239} = {C2403D80-2E0A-48B8-BE84-0CF993C6DA4C}
 		{E8FD9E57-DD4E-49DB-947C-18950F4F297E} = {C2403D80-2E0A-48B8-BE84-0CF993C6DA4C}
+		{5EA3B01F-CD30-4B54-930A-7DCE04D30F89} = {115EC0E1-FF29-4147-95A9-A59C89DCE62D}
+		{A6DA803C-85EF-478D-AB3A-AE8EE5B5C831} = {5EA3B01F-CD30-4B54-930A-7DCE04D30F89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDFA58B6-95C6-40AE-848E-2128079EBC35}

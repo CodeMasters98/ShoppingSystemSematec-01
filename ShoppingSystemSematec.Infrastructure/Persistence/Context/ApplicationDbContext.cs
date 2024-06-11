@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShoppingSystemSematec.Domain.Contracts;
 using ShoppingSystemSematec.Domain.Entities;
+using ShoppingSystemSematec.Infrastructure.Extensions;
 using System.Reflection;
 
 namespace ShoppingSystemSematec.Infrastructure.Context;
@@ -17,9 +19,17 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.HasDefaultSchema("BASE");
+        builder.RegisterAllSeeders(typeof(IBaseSeeder<>).Assembly);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(builder);
     }
+
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //   => modelBuilder
+    //       .HasDefaultSchema(EntitySchema.Ens)
+    //       .RegisterAllEntities(typeof(EntityAttribute).Assembly)
+    //       .RegisterAllSeeders(typeof(IBaseSeeder<>).Assembly)
+    //       .ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
     public override int SaveChanges()
     {

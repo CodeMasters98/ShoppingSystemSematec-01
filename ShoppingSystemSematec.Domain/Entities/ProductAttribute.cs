@@ -2,6 +2,7 @@
 
 namespace ShoppingSystemSematec.Domain.Entities;
 
+[Entity]
 public class ProductAttribute : BaseEntity<int>
 {
     public string Key { get; set; }

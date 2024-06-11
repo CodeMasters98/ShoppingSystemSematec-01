@@ -5,8 +5,11 @@ using Microsoft.Extensions.Options;
 using ShoppingSystemSematec.Api.Shared.Configs;
 using ShoppingSystemSematec.Application.Contracts;
 using ShoppingSystemSematec.Application.Dtos;
+using ShoppingSystemSematec.Application.Usecases.Product.Commands;
 using ShoppingSystemSematec.Application.Wrappers;
 using ShoppingSystemSematec.Domain.Entities;
+using ShoppingSystemSematec.Domain.ValueObjects;
+using ShoppingSystemSematec.Infrastructure.Persistence.Repositories;
 using System.Net.Mime;
 
 namespace ShoppingSystemSematec.Controllers;
@@ -25,18 +28,17 @@ public class ProductController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromBody] QueryCriteria queryCriteria = null, CancellationToken ct = default)
     {
-        var products = await _productService.GetAllAsync();
+        var products = await _productService.FindByQueryCriteria(queryCriteria);
         return Ok(products);
     }
 
     [Route("{id}")]
     [HttpGet]
-    public async Task<IActionResult> Get([FromRoute] int id)
+    public async Task<IActionResult> Get([FromRoute] int id, CancellationToken ct)
     {
-
-        var product = await _productService.FindByCondition(x => x.Id == id);
+        var product = await _productService.FindByCondition(x => x.Id == id, ct);
         if (product is null)
             return NotFound();
         var productDto = _mapper.Map<ProductDto>(product);
@@ -45,7 +47,7 @@ public class ProductController : BaseController
 
     [Route("")]
     [HttpDelete]
-    public async Task<bool> Delete()
+    public async Task<bool> Delete(CancellationToken ct)
     {
         return true;
     }
@@ -55,13 +57,8 @@ public class ProductController : BaseController
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Add([FromBody] AddProductDto productDto)
-    {
-        var product = _mapper.Map<Product>(productDto);
-        await _productService.AddAsync(product);
-
-        return Created();
-    }
+    public async Task<IActionResult> Add([FromBody] AddProductCommand command, CancellationToken ct)
+        => await SendAsync(command, ct);
 
     [Route("")]
     [HttpPut]
@@ -86,6 +83,7 @@ public class ProductController : BaseController
 
         using (var memoryStream = new MemoryStream())
         {
+            //Businness
             await file.CopyToAsync(memoryStream);
             //imageEntity.Data = memoryStream.ToArray();
         }

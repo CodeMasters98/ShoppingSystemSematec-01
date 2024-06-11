@@ -1,16 +1,19 @@
-﻿using System.Linq.Expressions;
+﻿using ShoppingSystemSematec.Domain.ValueObjects;
+using System.Linq.Expressions;
 
 namespace ShoppingSystemSematec.Domain.Contracts;
 
 public interface IGenericRepository<TEntity> where TEntity : class
 {
-    Task<IList<TEntity>> GetAllAsync();
+    Task<IList<TEntity>> GetAllAsync(CancellationToken ct);
 
-    Task<IList<TEntity>> FindByCondition(Expression<Func<TEntity, bool>> expression);
+    Task<IList<TEntity>> FindByCondition(Expression<Func<TEntity, bool>> expression, CancellationToken ct);
 
-    Task<bool> AddAsync(TEntity entity);
+    Task<IEnumerable<TEntity>> FindByQueryCriteria(QueryCriteria queryCriteria);
 
-    Task<bool> UpdateAsync(TEntity entity);
+    Task<bool> AddAsync(TEntity entity, CancellationToken ct);
 
-    Task<bool> DeleteAsync(TEntity entity);
+    Task<bool> UpdateAsync(TEntity entity, CancellationToken ct);
+
+    Task<bool> DeleteAsync(TEntity entity, CancellationToken ct);
 }
