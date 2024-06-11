@@ -27,6 +27,7 @@ public class ProductController : BaseController
         _productService = productService;
     }
 
+    [Route("GetAll")]
     [HttpGet]
     public async Task<IActionResult> GetAll([FromBody] QueryCriteria queryCriteria = null, CancellationToken ct = default)
     {
@@ -45,14 +46,14 @@ public class ProductController : BaseController
         return Ok(productDto);
     }
 
-    [Route("")]
+    [Route("Delete")]
     [HttpDelete]
     public async Task<bool> Delete(CancellationToken ct)
     {
         return true;
     }
 
-    [Route("")]
+    [Route("Add")]
     [HttpPost]
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -60,14 +61,14 @@ public class ProductController : BaseController
     public async Task<IActionResult> Add([FromBody] AddProductCommand command, CancellationToken ct)
         => await SendAsync(command, ct);
 
-    [Route("")]
+    [Route("Update")]
     [HttpPut]
     public bool Update(Product product)
     {
         return true;
     }
 
-    [Route("")]
+    [Route("Activate")]
     [HttpPut]
     public bool Activate([FromRoute] int productId)
     {

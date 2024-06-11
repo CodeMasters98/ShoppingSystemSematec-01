@@ -86,13 +86,14 @@ public static class CustomFilter
                 }
             }
 
-            return await query.Skip(queryCriteria.Skip)
-                              .Take(queryCriteria.Take)
-                              .ToListAsync();
+            //return await query.Skip(queryCriteria.Skip)
+            //                  .Take(queryCriteria.Take)
+            //                  .ToListAsync();
         }
         else
         {
-            return await query.ToListAsync();
+            //return await query.ToListAsync();
         }
+        return query;
     }
 }
